@@ -9,7 +9,7 @@ import optparse
 import email.mime
 import boto
 import boto.ec2
-from boto.ec2.blockdevicemapping import EBSBlockDeviceType, BlockDeviceMapping
+from boto.ec2.blockdevicemapping import EBSBlockDeviceType, BlockDeviceMapping, BlockDeviceType
 import shaker.log
 import shaker.config
 import shaker.template
@@ -80,6 +80,10 @@ class EBSFactory(object):
         if self.config['ec2_size']:
             block_map[root_device].size = self.config['ec2_size']
         block_map[root_device].delete_on_termination = True
+        for num, device_location in enumerate(self.config['ec2_ephemeral_devices']):
+            device = BlockDeviceType()
+            device.ephemeral_name = 'ephemeral%d' % num
+            block_map[device_location] = device
         reservation = self.conn.run_instances(
             self.config['ec2_ami_id'],
             key_name=self.config['ec2_key_name'],

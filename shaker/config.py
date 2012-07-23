@@ -30,6 +30,7 @@ DEFAULTS = {
     'ec2_security_groups': [],
     'ec2_monitoring_enabled': False,
     'ec2_root_device': '/dev/sda1',
+    'ec2_ephemeral_devices': [],
     'ec2_architecture': 'i386',
     'salt_master': None,
     'salt_id': None,
