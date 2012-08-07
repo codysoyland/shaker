@@ -19,6 +19,7 @@ RUN_INSTANCE_TIMEOUT = 180  # seconds
 InstanceTypes = [
     't1.micro',
     'm1.small',
+    'm1.large',
     'm2.xlarge',
     'm2.2xlarge',
     'm2.4xlarge',
